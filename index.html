@@ -1,1 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senternet Templates | Web design & digital marketing in Aranthangi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap');
+
+        :root {
+            --neon-color-1: #ff00ff;
+            --neon-color-2: #00ffff;
+            --neon-color-3: #ff0000;
+            --neon-color-4: #ffff00;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050505;
+            overflow: hidden; /* Prevent scrollbars during intro */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- Intro Animation Styles --- */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        .magical-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop'); /* Starry/Magical bg */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            filter: blur(2px) hue-rotate(0deg);
+            animation: bgShift 20s infinite alternate linear;
+        }
+
+        @keyframes bgShift {
+            0% { transform: scale(1); filter: blur(2px) hue-rotate(0deg); }
+            100% { transform: scale(1.1); filter: blur(4px) hue-rotate(45deg); }
+        }
+
+        .brand-text {
+            position: relative;
+            z-index: 10;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 5rem); /* Responsive font size */
+            font-weight: 700;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-align: center;
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            animation: letterReveal 0.8s forwards;
+            /* Text gradient */
+            background: linear-gradient(to bottom, #fff, #aaa);
+            -webkit-background-clip: text;
+        }
+
+        .letter.glow {
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 40px rgba(255, 0, 255, 0.4);
+            color: #fff; /* Solid color when glowing */
+            background: none;
+        }
+
+        @keyframes letterReveal {
+            to {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Main Content & Neon Border --- */
+        #main-app {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 1s ease-in;
+            z-index: 10;
+        }
+
+        /* The Box Container */
+        .neon-box {
+            position: relative;
+            width: 98vw;  /* Slightly less than full width for aesthetic margin */
+            height: 98vh; /* Slightly less than full height */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        /* The Running Border Effect */
+        .neon-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent, 
+                var(--neon-color-1), 
+                transparent 30%
+            );
+            animation: rotateBorder 4s linear infinite;
+            z-index: 1;
+        }
+        
+        /* Second ray for more complex effect */
+        .neon-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent, 
+                var(--neon-color-2), 
+                transparent 30%
+            );
+            animation: rotateBorder 4s linear infinite;
+            animation-delay: -2s; /* Offset */
+            z-index: 1;
+        }
+
+        @keyframes rotateBorder {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* The Inner Mask (creates the 1px thickness) */
+        .inner-content {
+            position: absolute;
+            inset: 2px; /* This controls border thickness (2px gap reveals background behind) */
+            background: #050505;
+            border-radius: 6px; /* Slightly less than parent */
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Spinner for Iframe */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #333;
+            border-top: 4px solid #00ffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            z-index: -1; /* Behind iframe */
+        }
+
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <!-- INTRO SECTION -->
+    <div id="intro-overlay">
+        <div class="magical-bg"></div>
+        <h1 class="brand-text" id="brand-text">
+            <!-- Letters injected via JS -->
+        </h1>
+    </div>
+
+    <!-- MAIN APP SECTION -->
+    <div id="main-app">
+        <div class="neon-box">
+            <!-- Simple loading indicator behind iframe -->
+            <div class="loader"></div>
+            
+            <div class="inner-content">
+                <iframe 
+                    id="content-iframe"
+                    src="" 
+                    allowfullscreen
+                    sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation-by-user-activation"
+                    title="Google Script App">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const APP_URL = "https://script.google.com/macros/s/AKfycbwzCcbFzMZQSHaTL4yU1vKgTV9cIxvc2k9UYUITedhEYvuJ7kbejV0VfIDwZVwBzQ9s/exec";
+        const BRAND_NAME = "Senternet Templates";
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const brandTextEl = document.getElementById('brand-text');
+            const introOverlay = document.getElementById('intro-overlay');
+            const mainApp = document.getElementById('main-app');
+            const iframe = document.getElementById('content-iframe');
+
+            // 1. Prepare Text Animation
+            // Split text into letters and wrap in spans
+            const letters = BRAND_NAME.split('').map((char, index) => {
+                if(char === ' ') return `<span style="display:inline-block; width: 0.3em;">&nbsp;</span>`;
+                // Add staggered delay based on index
+                const delay = index * 0.1; 
+                return `<span class="letter" style="animation-delay: ${delay}s">${char}</span>`;
+            }).join('');
+            
+            brandTextEl.innerHTML = letters;
+
+            // 2. Trigger "Glow" effect slightly after reveal
+            const spans = brandTextEl.querySelectorAll('.letter');
+            spans.forEach((span, idx) => {
+                setTimeout(() => {
+                    span.classList.add('glow');
+                }, (idx * 100) + 800); // 800ms offset matches animation duration roughly
+            });
+
+            // 3. Load Iframe in background while intro plays
+            // We set the src now so it starts loading
+            iframe.src = APP_URL;
+
+            // 4. Transition Logic
+            const INTRO_DURATION = 4500; // 4.5 seconds total intro time
+
+            setTimeout(() => {
+                // Fade out intro
+                introOverlay.style.opacity = '0';
+                introOverlay.style.visibility = 'hidden';
+                
+                // Fade in Main App
+                mainApp.style.opacity = '1';
+                
+            }, INTRO_DURATION);
+
+        });
+    </script>
+</body>
+</html>
+
 
