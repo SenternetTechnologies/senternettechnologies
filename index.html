@@ -11,10 +11,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap');
 
         :root {
-            --neon-color-1: #ff00ff;
-            --neon-color-2: #00ffff;
-            --neon-color-3: #6366f1; /* Indigo/Violet */
-            --neon-color-4: #a855f7; /* Purple */
+            --accent-color: #6366f1; /* Indigo */
         }
 
         * {
@@ -25,8 +22,8 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #050505;
-            overflow: hidden; /* Lock scroll during app usage */
+            background-color: #000;
+            overflow: hidden; 
             font-family: 'Montserrat', sans-serif;
             height: 100vh;
             width: 100vw;
@@ -54,25 +51,25 @@
             background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            opacity: 0.3;
-            filter: blur(4px) hue-rotate(0deg);
-            animation: bgShift 30s infinite alternate linear;
+            opacity: 0.2;
+            filter: blur(8px);
+            animation: bgShift 40s infinite alternate linear;
         }
 
         @keyframes bgShift {
-            0% { transform: scale(1) rotate(0deg); filter: blur(4px) hue-rotate(0deg); }
-            100% { transform: scale(1.2) rotate(2deg); filter: blur(8px) hue-rotate(90deg); }
+            0% { transform: scale(1); filter: hue-rotate(0deg); }
+            100% { transform: scale(1.1); filter: hue-rotate(45deg); }
         }
 
         .brand-text {
             position: relative;
             z-index: 110;
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 8vw, 4rem);
+            font-size: clamp(1.5rem, 8vw, 3.5rem);
             font-weight: 700;
             color: transparent;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             text-align: center;
             padding: 0 20px;
         }
@@ -80,17 +77,15 @@
         .letter {
             display: inline-block;
             opacity: 0;
-            filter: blur(12px);
-            transform: translateY(30px) scale(0.5);
-            animation: letterReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            background: linear-gradient(135deg, #fff, #777);
+            filter: blur(10px);
+            transform: translateY(20px);
+            animation: letterReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            background: linear-gradient(to bottom, #fff, #888);
             -webkit-background-clip: text;
         }
 
         .letter.glow {
-            text-shadow: 
-                0 0 10px rgba(168, 85, 247, 0.8),
-                0 0 30px rgba(99, 102, 241, 0.6);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
             color: #fff;
             background: none;
         }
@@ -99,96 +94,32 @@
             to {
                 opacity: 1;
                 filter: blur(0);
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
         /* --- Main Content Layout --- */
         #main-app {
-            position: relative;
+            position: fixed;
+            inset: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-        }
-
-        /* Responsive Neon Container */
-        .neon-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding: 10px; /* Safety margin for the border glow */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .neon-wrapper {
-                width: 96vw;
-                height: 94vh;
-                padding: 3px;
-            }
-        }
-
-        .neon-box {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.9);
-            display: flex;
-        }
-
-        /* The Animated Gradient Border */
-        .neon-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                from 0deg,
-                transparent, 
-                var(--neon-color-3), 
-                var(--neon-color-2),
-                var(--neon-color-1),
-                transparent 40%
-            );
-            animation: rotateBorder 6s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes rotateBorder {
-            100% { transform: rotate(360deg); }
-        }
-
-        .inner-content {
-            position: absolute;
-            inset: 3px; /* Border thickness */
-            background: #0a0a0a;
-            border-radius: 10px;
-            z-index: 2;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            background: #000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
         }
 
-        /* Responsive Iframe Handling */
-        .iframe-container {
+        /* Removed Border Logic and replaced with clean container */
+        .app-container {
             flex-grow: 1;
             width: 100%;
             height: 100%;
             position: relative;
             background: #000;
-            -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+            overflow: hidden;
         }
 
         iframe {
@@ -196,44 +127,51 @@
             height: 100%;
             border: none;
             display: block;
-            /* Critical for mobile scaling */
             position: absolute;
             top: 0;
             left: 0;
+            /* Critical for modern iframe interaction */
+            color-scheme: dark;
         }
 
         /* Loading UI */
         .loading-mask {
             position: absolute;
             inset: 0;
-            background: #0a0a0a;
+            background: #000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10;
-            transition: opacity 0.5s ease;
+            z-index: 50;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
 
         .loader-ring {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(168, 85, 247, 0.1);
-            border-top: 3px solid var(--neon-color-2);
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-top: 2px solid #fff;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .loading-text {
-            margin-top: 15px;
-            color: #666;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            margin-top: 20px;
+            color: #444;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
         }
 
+        /* Disable user selection/scrolling on root */
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
     </style>
 </head>
 <body>
@@ -242,37 +180,37 @@
     <div id="intro-overlay">
         <div class="magical-bg"></div>
         <h1 class="brand-text" id="brand-text"></h1>
-        <p style="color: #555; font-size: 0.7rem; z-index: 110; margin-top: 20px; letter-spacing: 3px;" id="loading-subtext">BY SENTERNET TECHNOLOGIES</p>
+        <p style="color: #444; font-size: 0.6rem; z-index: 110; margin-top: 25px; letter-spacing: 4px; font-weight: 500;" id="loading-subtext">BY SENTERNET TECHNOLOGIES</p>
     </div>
 
     <!-- MAIN APP SECTION -->
     <div id="main-app">
-        <div class="neon-wrapper">
-            <div class="neon-box">
-                <div class="inner-content">
-                    <div class="iframe-container">
-                        <div class="loading-mask" id="iframe-loader">
-                            <div class="loader-ring"></div>
-                            <p class="loading-text">Connecting to Server...</p>
-                        </div>
-                        <iframe 
-                            id="content-iframe"
-                            src="" 
-                            allowfullscreen
-                            sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation-by-user-activation"
-                            title="Senternet Portal">
-                        </iframe>
-                    </div>
-                </div>
+        <div class="app-container">
+            <!-- Iframe Loading State -->
+            <div class="loading-mask" id="iframe-loader">
+                <div class="loader-ring"></div>
+                <p class="loading-text">Establishing Connection</p>
             </div>
+            
+            <!-- Target Iframe -->
+            <iframe 
+                id="content-iframe"
+                src="about:blank"
+                allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+                sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation-by-user-activation allow-downloads allow-modals"
+                allowfullscreen
+                loading="lazy"
+                title="Senternet Portal">
+            </iframe>
         </div>
     </div>
 
     <script>
         const CONFIG = {
+            // Updated to the URL provided
             url: "https://script.google.com/macros/s/AKfycbwzCcbFzMZQSHaTL4yU1vKgTV9cIxvc2k9UYUITedhEYvuJ7kbejV0VfIDwZVwBzQ9s/exec",
             brandName: "Senternet Templates",
-            introDelay: 4200
+            introDuration: 4000
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -282,56 +220,67 @@
             const iframe = document.getElementById('content-iframe');
             const loaderMask = document.getElementById('iframe-loader');
 
-            // 1. Text Animation Injection
-            const letters = CONFIG.brandName.split('').map((char, index) => {
-                if(char === ' ') return `<span style="display:inline-block; width: 0.3em;">&nbsp;</span>`;
-                const delay = index * 0.08; 
-                return `<span class="letter" style="animation-delay: ${delay}s">${char}</span>`;
+            // 1. Precise Text Animation
+            const chars = CONFIG.brandName.split('');
+            brandTextEl.innerHTML = chars.map((char, i) => {
+                if (char === ' ') return `<span style="display:inline-block; width: 0.4em;">&nbsp;</span>`;
+                return `<span class="letter" style="animation-delay: ${i * 0.07}s">${char}</span>`;
             }).join('');
-            brandTextEl.innerHTML = letters;
 
-            // 2. Glow effect sequence
-            const spans = brandTextEl.querySelectorAll('.letter');
-            spans.forEach((span, idx) => {
-                setTimeout(() => {
-                    span.classList.add('glow');
-                }, (idx * 80) + 1000);
-            });
+            // 2. Glow sequence
+            setTimeout(() => {
+                const spans = brandTextEl.querySelectorAll('.letter');
+                spans.forEach((span, idx) => {
+                    setTimeout(() => span.classList.add('glow'), idx * 50);
+                });
+            }, 800);
 
-            // 3. Iframe Source Initialization
-            // We load it early, but keep the loader visible
+            // 3. Early Iframe Trigger
+            // Setting src via JS to ensure sandbox and permissions are applied correctly
             iframe.src = CONFIG.url;
-            
+
             iframe.onload = () => {
+                // Smoothly hide internal loader once iframe content is ready
                 setTimeout(() => {
                     loaderMask.style.opacity = '0';
-                    setTimeout(() => loaderMask.style.display = 'none', 500);
-                }, 1000);
+                    setTimeout(() => {
+                        loaderMask.style.visibility = 'hidden';
+                    }, 600);
+                }, 800);
             };
 
-            // 4. Transition to Main App
+            // 4. Transition Logic
             setTimeout(() => {
+                // Fade out intro
                 introOverlay.style.opacity = '0';
+                
                 setTimeout(() => {
                     introOverlay.style.visibility = 'hidden';
+                    
+                    // Show main app
+                    mainApp.style.visibility = 'visible';
                     mainApp.style.opacity = '1';
+                    
+                    // Safety unlock for interactions inside iframe
+                    document.body.style.touchAction = 'auto';
+                    document.body.style.overflow = 'auto';
                 }, 1200);
-            }, CONFIG.introDelay);
+            }, CONFIG.introDuration);
 
-            // Handle potential iframe load errors or timeouts
+            // Fail-safe for slow Google Script responses
             setTimeout(() => {
-                if (loaderMask.style.display !== 'none') {
-                    // Force hide if taking too long
+                if (loaderMask.style.visibility !== 'hidden') {
                     loaderMask.style.opacity = '0';
-                    setTimeout(() => loaderMask.style.display = 'none', 500);
+                    setTimeout(() => loaderMask.style.visibility = 'hidden', 600);
                 }
-            }, 10000);
+            }, 12000);
         });
 
-        // Prevention of pull-to-refresh on mobile for better app experience
-        document.addEventListener('touchmove', (e) => {
-            if (e.scale !== 1) e.preventDefault();
-        }, { passive: false });
+        // Basic error prevention for iframes
+        window.addEventListener('message', (event) => {
+            // Future extensibility for AppScript communication
+            console.log("Portal Event:", event.data);
+        });
     </script>
 </body>
 </html>
