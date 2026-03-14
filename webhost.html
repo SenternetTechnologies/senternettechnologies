@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senternet Technologies | Cloud Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+        }
+
+        /* Fullscreen Iframe */
+        .app-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Intro Overlay */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1.5s ease-out;
+        }
+
+        /* Glowing Portal Effect */
+        .portal {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 50px #4facfe, 0 0 100px #00f2fe;
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            animation: rotatePortal 2s linear infinite;
+        }
+
+        @keyframes rotatePortal {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .portal::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border: 2px dashed #4facfe;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Hand & File Animation */
+        .hand-container {
+            position: absolute;
+            bottom: -150px;
+            display: none;
+            transition: all 1s ease;
+        }
+
+        .file-icon {
+            position: absolute;
+            font-size: 40px;
+            color: #fff;
+            opacity: 0;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+            letter-spacing: 4px;
+        }
+
+        /* Progress Bar */
+        .progress-box {
+            width: 300px;
+            height: 4px;
+            background: #222;
+            border-radius: 10px;
+            margin-top: 30px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            transition: width 0.1s linear;
+        }
+
+        .hidden-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main WebApp Content (Loading in background) -->
+    <div class="app-container">
+        <iframe src="https://script.google.com/macros/s/AKfycbxMaWEWf20XcNEvX7FL0tGq1vcRbvUJqglrMDknVWj_8-TRzc9H7CyEJXgy_qCau1QQGA/exec" id="mainApp"></iframe>
+    </div>
+
+    <!-- Intro Animation Overlay -->
+    <div id="intro-overlay">
+        <!-- Stage 1: Brand Intro -->
+        <div id="stage1" class="text-center">
+            <h1 class="text-5xl md:text-7xl font-black text-white text-glow animate__animated animate__zoomIn">
+                SENTERNET
+            </h1>
+            <p class="text-cyan-400 text-xl font-bold mt-2 animate__animated animate__fadeInUp animate__delay-1s">
+                TECHNOLOGIES
+            </p>
+            <div class="mt-8 text-gray-400 font-light tracking-widest animate__animated animate__fadeIn animate__delay-2s">
+                FREE WEB HOSTING • DIGITAL SOLUTIONS
+            </div>
+        </div>
+
+        <!-- Stage 2: Portal & Upload -->
+        <div id="stage2" class="hidden flex flex-col items-center">
+            <div class="portal" id="portal">
+                <svg viewBox="0 0 24 24" width="80" height="80" fill="white" class="animate__animated animate__bounceIn">
+                    <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/>
+                </svg>
+            </div>
+            
+            <div id="hand" class="hand-container">
+                <span class="text-6xl">✋</span>
+                <div class="file-icon" id="file">📄</div>
+            </div>
+
+            <h2 id="status-text" class="text-white mt-12 font-medium tracking-widest uppercase">Initializing Cloud...</h2>
+        </div>
+
+        <!-- Loading Progress -->
+        <div class="progress-box">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('intro-overlay');
+            const stage1 = document.getElementById('stage1');
+            const stage2 = document.getElementById('stage2');
+            const portal = document.getElementById('portal');
+            const hand = document.getElementById('hand');
+            const file = document.getElementById('file');
+            const statusText = document.getElementById('status-text');
+            const progressBar = document.getElementById('progressBar');
+
+            let progress = 0;
+            const totalDuration = 10000; // 10 seconds
+            const intervalTime = 100;
+            const increment = (intervalTime / totalDuration) * 100;
+
+            // Start Progress Bar
+            const timer = setInterval(() => {
+                progress += increment;
+                progressBar.style.width = progress + '%';
+                if (progress >= 100) clearInterval(timer);
+            }, intervalTime);
+
+            // Timeline Sequence
+            
+            // 1. Transition from Brand to Portal (at 3 seconds)
+            setTimeout(() => {
+                stage1.classList.add('animate__animated', 'animate__fadeOut');
+                setTimeout(() => {
+                    stage1.classList.add('hidden');
+                    stage2.classList.remove('hidden');
+                    portal.style.display = 'flex';
+                }, 1000);
+            }, 3000);
+
+            // 2. Hand enters and uploads file (at 5 seconds)
+            setTimeout(() => {
+                hand.style.display = 'block';
+                setTimeout(() => {
+                    hand.style.bottom = '20%';
+                    statusText.innerText = "Opening Portal...";
+                }, 100);
+
+                // File rising into portal
+                setTimeout(() => {
+                    file.style.opacity = '1';
+                    file.style.bottom = '100px';
+                    file.style.transition = 'all 1.5s ease-out';
+                    file.style.transform = 'translateY(-200px) scale(0)';
+                    statusText.innerText = "Uploading Files...";
+                }, 1500);
+            }, 5000);
+
+            // 3. Final Connection & Fade Out (at 10 seconds)
+            setTimeout(() => {
+                statusText.innerText = "Link Generated. Entering...";
+                portal.style.transform = 'scale(10)';
+                portal.style.opacity = '0';
+                portal.style.transition = 'all 1s ease-in';
+                
+                setTimeout(() => {
+                    overlay.classList.add('hidden-overlay');
+                }, 800);
+            }, 9000);
+        });
+    </script>
+</body>
+</html>
