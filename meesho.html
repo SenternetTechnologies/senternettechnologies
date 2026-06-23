@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Best Quality Fashion at Lowest Prices</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://www.meesho.com/favicon.ico">
+    <!-- Google Fonts (Inter & Playfair for headers) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (v4-beta CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome v6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        meesho: {
+                            pink: '#f43397',
+                            pinkDark: '#d91f7e',
+                            textDark: '#353543',
+                            textGray: '#666666',
+                            bgGray: '#f8f9fa',
+                            border: '#e7e7e7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for premium experience */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f9fa;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f43397;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d91f7e;
+        }
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        /* Smooth transitions */
+        .transition-all-300 {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-meesho-textDark font-sans selection:bg-meesho-pink selection:text-white">
+
+    <!-- TOP ALERT ACCENT BAR -->
+    <div class="bg-meesho-pink text-white py-1.5 px-4 text-center text-xs font-semibold tracking-wide flex justify-between items-center z-50 relative">
+        <div class="hidden md:flex items-center gap-2">
+            <span class="bg-white/20 px-2 py-0.5 rounded-full text-[10px]">OFFER</span>
+            <span>Get Flat 15% Off + Free Delivery on your first order! Code: <strong>NEW15</strong></span>
+        </div>
+        <div class="mx-auto md:mx-0 flex items-center gap-4 text-[11px]">
+            <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="hover:underline flex items-center gap-1">
+                <i class="fab fa-whatsapp text-green-300"></i> Join Reseller Hub
+            </a>
+            <span class="opacity-50">|</span>
+            <a href="https://t.me/senternet_technologies" target="_blank" class="hover:underline flex items-center gap-1">
+                <i class="fab fa-telegram-plane text-sky-300"></i> SENTERNET Channel
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER NAV -->
+    <header class="sticky top-0 bg-white border-b border-meesho-border z-40 transition-all-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            
+            <!-- Logo & Quick Search Container -->
+            <div class="flex items-center justify-between md:gap-8">
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-meesho-textDark hover:text-meesho-pink cursor-pointer p-1">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <!-- Meesho Brand Logo (Recreated visually) -->
+                <a href="#" onclick="resetCategory()" class="flex items-center gap-1 cursor-pointer">
+                    <span class="text-3xl font-extrabold tracking-tighter text-meesho-pink">meesho</span>
+                    <span class="text-[9px] bg-slate-100 px-1.5 py-0.5 rounded-md text-meesho-textGray border border-slate-200 mt-2 font-medium hidden sm:inline-block">CLONE</span>
+                </a>
+
+                <!-- Search Input with Live Keyup -->
+                <div class="relative flex-1 max-w-lg mx-4 hidden sm:block">
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" id="mainSearchInput" onkeyup="filterProducts()" placeholder="Try Saree, Kurti, T-Shirt, Home Decor or Smartwatch..." 
+                           class="w-full pl-10 pr-4 py-2 text-sm border border-slate-300 rounded-md focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none transition-all-300 bg-slate-50 hover:bg-slate-100/50">
+                </div>
+
+                <!-- Simple Mobile Icons -->
+                <div class="flex items-center gap-4 md:hidden">
+                    <button onclick="toggleCartDrawer()" class="relative p-2 text-xl text-meesho-textDark hover:text-meesho-pink cursor-pointer">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="mobileCartCount" class="absolute -top-1 -right-1 bg-meesho-pink text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar (Visible only on mobile screen widths) -->
+            <div class="block sm:hidden w-full relative">
+                <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input type="text" id="mobileSearchInput" onkeyup="filterMobileProducts()" placeholder="Search from 10 Lakh+ Quality Products..." 
+                       class="w-full pl-10 pr-4 py-2.5 text-sm border border-slate-300 rounded-lg focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none bg-slate-50">
+            </div>
+
+            <!-- Actions / Navigation Links -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <!-- App Download link -->
+                <a href="#" class="text-meesho-textDark hover:text-meesho-pink flex items-center gap-1.5 py-2 border-b-2 border-transparent hover:border-meesho-pink transition-all-300">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Download App
+                </a>
+                <span class="text-slate-300">|</span>
+                <!-- Supplier Form Link -->
+                <button onclick="openSupplierModal()" class="text-meesho-textDark hover:text-meesho-pink flex items-center gap-1.5 py-2 border-b-2 border-transparent hover:border-meesho-pink cursor-pointer transition-all-300">
+                    <i class="fa-solid fa-shop"></i> Become a Supplier
+                </button>
+                <span class="text-slate-300">|</span>
+                <!-- Profile / Senternet -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 text-meesho-textDark hover:text-meesho-pink cursor-pointer py-2">
+                        <i class="fa-regular fa-user"></i> Profile
+                    </button>
+                    <!-- Simple dropdown on hover -->
+                    <div class="absolute right-0 top-full mt-1 w-48 bg-white rounded-lg shadow-xl border border-slate-100 py-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                        <div class="px-4 py-2 border-b border-slate-100">
+                            <p class="font-bold text-xs text-slate-500">Welcome User</p>
+                            <p class="text-xs text-meesho-textGray">To access orders & cart</p>
+                        </div>
+                        <a href="#orders" onclick="openOrderTrackingModal()" class="block px-4 py-2 hover:bg-slate-50 text-xs">My Orders</a>
+                        <a href="#wishlist" class="block px-4 py-2 hover:bg-slate-50 text-xs">Wishlist</a>
+                        <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="block px-4 py-2 hover:bg-slate-50 text-xs text-green-600 font-semibold flex items-center gap-1"><i class="fab fa-whatsapp"></i> Support Group</a>
+                    </div>
+                </div>
+
+                <!-- Main Cart Badge trigger -->
+                <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 bg-pink-50 hover:bg-pink-100/70 text-meesho-pink px-4 py-2 rounded-full cursor-pointer transition-all-300">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="font-semibold">Cart</span>
+                    <span id="headerCartCount" class="bg-meesho-pink text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- CATEGORIES SUB-NAV BAR (MEESHO SPECIAL) -->
+        <nav class="border-t border-slate-100 bg-white hidden md:block overflow-x-auto">
+            <div class="max-w-7xl mx-auto px-4 flex items-center justify-between text-sm whitespace-nowrap">
+                <button onclick="filterByCategory('all')" class="category-tab active py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">All Categories</button>
+                <button onclick="filterByCategory('women-ethnic')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Women Ethnic</button>
+                <button onclick="filterByCategory('women-western')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Women Western</button>
+                <button onclick="filterByCategory('men')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Men</button>
+                <button onclick="filterByCategory('kids')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Kids</button>
+                <button onclick="filterByCategory('home-kitchen')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Home & Kitchen</button>
+                <button onclick="filterByCategory('beauty-health')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Beauty & Health</button>
+                <button onclick="filterByCategory('electronics')" class="category-tab py-3 px-4 border-b-2 border-transparent hover:border-meesho-pink text-meesho-textDark hover:text-meesho-pink font-medium cursor-pointer transition-all-300">Electronics</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobileSidebar" class="fixed inset-0 bg-black/50 z-50 transform -translate-x-full transition-transform duration-300 flex">
+        <div class="w-80 bg-white h-full p-6 flex flex-col justify-between overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between mb-8">
+                    <span class="text-2xl font-black text-meesho-pink">meesho</span>
+                    <button id="closeMobileMenuBtn" class="text-2xl text-slate-500 hover:text-meesho-pink cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Shopping Categories</p>
+                    <button onclick="filterByCategoryMobile('all')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">All Products</button>
+                    <button onclick="filterByCategoryMobile('women-ethnic')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Women Ethnic</button>
+                    <button onclick="filterByCategoryMobile('women-western')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Women Western</button>
+                    <button onclick="filterByCategoryMobile('men')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Men's Wear</button>
+                    <button onclick="filterByCategoryMobile('kids')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Kids Section</button>
+                    <button onclick="filterByCategoryMobile('home-kitchen')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Home & Kitchen</button>
+                    <button onclick="filterByCategoryMobile('beauty-health')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Beauty & Health</button>
+                    <button onclick="filterByCategoryMobile('electronics')" class="block w-full text-left py-2 px-3 rounded hover:bg-slate-100 text-sm font-semibold text-slate-700">Electronics & Smart Gadgets</button>
+                    
+                    <hr class="border-slate-100 my-4">
+                    
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Quick Actions</p>
+                    <button onclick="openSupplierModal()" class="w-full text-left py-2.5 px-3 rounded bg-pink-50 hover:bg-pink-100/80 text-meesho-pink text-sm font-semibold flex items-center gap-2">
+                        <i class="fa-solid fa-shop"></i> Become a Supplier
+                    </button>
+                    <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="block w-full text-left py-2.5 px-3 rounded bg-green-50 hover:bg-green-100 text-green-600 text-sm font-semibold flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Join SENTERNET WhatsApp Group
+                    </a>
+                </div>
+            </div>
+            <!-- Mobile Footer Profile block -->
+            <div class="border-t border-slate-100 pt-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="CEO Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-meesho-pink">
+                    <div>
+                        <p class="text-sm font-bold">Senthilkumar (MCA)</p>
+                        <p class="text-[11px] text-meesho-textGray">CEO, Senternet Technologies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN BODY WORKSPACE -->
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-6">
+        
+        <!-- PROMOTIONAL HERO HERO SLIDER SECTION (Classic Meesho Style) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-white rounded-2xl border border-meesho-border overflow-hidden p-6 md:p-12 mb-10 shadow-sm relative">
+            <div class="lg:col-span-6 flex flex-col justify-center space-y-6">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                    Lowest Prices <br> <span class="text-meesho-pink">Best Quality Shopping</span>
+                </h1>
+                <p class="text-meesho-textGray text-base md:text-lg leading-relaxed">
+                    Explore 10 Lakh+ high-quality products across fashion, home decor, electronics, beauty, and children's apparel at factory direct wholesale prices.
+                </p>
+                <!-- Key Selling Badges -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-meesho-pink mb-1.5"><i class="fa-solid fa-truck-fast text-xs"></i></div>
+                        <span class="text-xs font-bold text-slate-700">Free Delivery</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-meesho-pink mb-1.5"><i class="fa-solid fa-wallet text-xs"></i></div>
+                        <span class="text-xs font-bold text-slate-700">Cash on Delivery</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 flex flex-col items-center text-center">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-meesho-pink mb-1.5"><i class="fa-solid fa-rotate-left text-xs"></i></div>
+                        <span class="text-xs font-bold text-slate-700">Easy Returns</span>
+                    </div>
+                </div>
+                <!-- SENTERNET conversion call to action wrapper -->
+                <div class="pt-2 flex flex-wrap gap-4">
+                    <a href="#productGrid" class="bg-meesho-pink hover:bg-meesho-pinkDark text-white font-bold py-3 px-8 rounded-xl transition-all-300 shadow-md hover:shadow-lg inline-flex items-center gap-2">
+                        Shop Now <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl transition-all-300 shadow-md hover:shadow-lg inline-flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Resell & Earn
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Banner Interactive Graphics -->
+            <div class="lg:col-span-6 relative">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Meesho Style Fashion Showcase" class="w-full h-80 md:h-[450px] object-cover rounded-xl shadow-lg border border-slate-200">
+                <!-- Overlay tags -->
+                <div class="absolute top-4 left-4 bg-white/95 px-4 py-2 rounded-lg shadow-md border border-slate-100 flex items-center gap-2 animate-bounce">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs font-bold">12k+ Indian Sarees Added Today</span>
+                </div>
+                <div class="absolute bottom-6 right-6 bg-meesho-pink text-white px-4 py-3 rounded-lg shadow-md font-bold text-center">
+                    <p class="text-2xl">70% Off</p>
+                    <p class="text-[10px] tracking-widest uppercase">Festive Deals</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT SECTION WITH SIDEBAR FILTERS & SORTING -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8" id="productGrid">
+            
+            <!-- Side filter Panel (Collapsible / Dynamic) -->
+            <aside class="space-y-6 hidden lg:block bg-white p-6 rounded-2xl border border-meesho-border h-fit sticky top-28 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <h3 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-meesho-pink"></i> Advanced Filters
+                    </h3>
+                    <button onclick="clearAllFilters()" class="text-xs text-meesho-pink hover:underline cursor-pointer font-semibold">Clear All</button>
+                </div>
+
+                <!-- Sort Order options -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Sort Products</label>
+                    <select id="priceSorter" onchange="sortProducts()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-sm font-medium focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                        <option value="relevance">Relevance / Popularity</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                        <option value="rating">Top Customer Rated</option>
+                    </select>
+                </div>
+
+                <!-- Quick Category Toggles -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Category Segment</label>
+                    <div class="space-y-2 text-sm text-slate-600">
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="all" checked onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            All Stock Collection
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="women-ethnic" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Women Ethnic Sarees & Kurtis
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="women-western" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Women Western Wear
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="men" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Men's Fashion & Shirts
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="kids" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Kids Clothing
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="home-kitchen" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Home Decor & Kitchen Appliances
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="beauty-health" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Beauty, Skincare & Health
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer hover:text-meesho-pink">
+                            <input type="radio" name="sidebar-category" value="electronics" onchange="filterByCategory(this.value)" class="w-4 h-4 text-meesho-pink focus:ring-meesho-pink">
+                            Electronics & Wearables
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Range Slider -->
+                <div class="space-y-3 pt-2">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Max Price Cap</label>
+                    <div class="flex items-center justify-between text-sm font-semibold">
+                        <span>₹99</span>
+                        <span id="priceValue" class="text-meesho-pink">₹1500</span>
+                    </div>
+                    <input type="range" id="priceRange" min="150" max="1500" value="1500" step="50" oninput="updatePriceSlider(this.value)" class="w-full accent-meesho-pink h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <!-- Discount filter options -->
+                <div class="space-y-3 pt-2">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Assured Offer Discount</label>
+                    <div class="space-y-2 text-sm text-slate-600">
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="discount-checkbox" value="10" onchange="filterProducts()" class="w-4 h-4 rounded border-slate-300 text-meesho-pink focus:ring-meesho-pink">
+                            10% Off and above
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="discount-checkbox" value="20" onchange="filterProducts()" class="w-4 h-4 rounded border-slate-300 text-meesho-pink focus:ring-meesho-pink">
+                            20% Off and above
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer">
+                            <input type="checkbox" name="discount-checkbox" value="30" onchange="filterProducts()" class="w-4 h-4 rounded border-slate-300 text-meesho-pink focus:ring-meesho-pink">
+                            30% Off and above
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Help Support Accent Box inside Filters -->
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 p-4 rounded-xl text-center">
+                    <p class="text-xs font-bold text-meesho-pink">Need Custom Orders?</p>
+                    <p class="text-[11px] text-slate-500 mt-1">Chat directly with the SENTERNET Resell Agent on WhatsApp.</p>
+                    <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="mt-2.5 inline-block text-xs font-bold bg-meesho-pink text-white py-1.5 px-3 rounded-md hover:bg-meesho-pinkDark transition-all-300"><i class="fab fa-whatsapp"></i> Chat Support</a>
+                </div>
+            </aside>
+
+            <!-- Main Product Display Grid column -->
+            <div class="lg:col-span-3 space-y-6">
+                
+                <!-- Quick stats bar -->
+                <div class="flex items-center justify-between bg-white border border-meesho-border px-4 py-3 rounded-xl shadow-sm">
+                    <p class="text-sm font-semibold text-slate-600">
+                        Showing <span id="displayedProductsCount" class="text-meesho-pink font-bold">12</span> high-quality products
+                    </p>
+                    <!-- Mobile sorter block -->
+                    <div class="lg:hidden flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-500"><i class="fa-solid fa-sort"></i></span>
+                        <select id="mobilePriceSorter" onchange="sortMobileProducts()" class="text-xs border-0 outline-none font-bold text-meesho-pink bg-transparent">
+                            <option value="relevance">Popularity</option>
+                            <option value="low-high">Price: Low-High</option>
+                            <option value="high-low">Price: High-Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Display Card grid -->
+                <div id="productsGridContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Dynamic Javascript Product Cards rendered here -->
+                </div>
+                
+                <!-- Empty product state placeholder -->
+                <div id="emptyProductState" class="hidden flex-col items-center justify-center text-center py-16 bg-white border border-slate-100 rounded-2xl">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-meesho-pink text-2xl mb-4"><i class="fa-solid fa-face-frown"></i></div>
+                    <p class="text-lg font-bold text-slate-700">No products match your criteria</p>
+                    <p class="text-sm text-slate-400 mt-1">Try resetting the side filters or search queries.</p>
+                    <button onclick="clearAllFilters()" class="mt-4 px-6 py-2 bg-meesho-pink hover:bg-meesho-pinkDark text-white font-bold rounded-lg transition-all-300 text-xs">Reset All Filters</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- PRODUCT DETAIL VIEW MODAL (Glassmorphic & Animated) -->
+    <div id="productDetailModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl flex flex-col md:flex-row gap-6 p-6 border border-slate-200">
+            <!-- Close Modal -->
+            <button onclick="closeProductDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl cursor-pointer p-1"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- Left Image Slider inside modal -->
+            <div class="md:w-1/2">
+                <img id="modalProductImage" src="" alt="Product Image" class="w-full h-80 md:h-[420px] object-cover rounded-xl border border-slate-100">
+                <div class="mt-4 grid grid-cols-4 gap-2">
+                    <div class="border-2 border-meesho-pink rounded-lg overflow-hidden cursor-pointer"><img id="thumb1" src="" class="w-full h-16 object-cover opacity-80 hover:opacity-100"></div>
+                    <div class="border border-slate-200 rounded-lg overflow-hidden cursor-pointer"><img id="thumb2" src="" class="w-full h-16 object-cover opacity-80 hover:opacity-100"></div>
+                    <div class="border border-slate-200 rounded-lg overflow-hidden cursor-pointer"><img id="thumb3" src="" class="w-full h-16 object-cover opacity-80 hover:opacity-100"></div>
+                    <div class="border border-slate-200 rounded-lg overflow-hidden cursor-pointer"><img id="thumb4" src="" class="w-full h-16 object-cover opacity-80 hover:opacity-100"></div>
+                </div>
+            </div>
+
+            <!-- Right Info column inside modal -->
+            <div class="md:w-1/2 flex flex-col justify-between space-y-4">
+                <div>
+                    <!-- Category and badge -->
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="modalProductCategory" class="text-xs uppercase font-extrabold tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md">Category</span>
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Free Shipping</span>
+                    </div>
+
+                    <h2 id="modalProductTitle" class="text-2xl font-bold text-slate-900 leading-snug">Product Title</h2>
+                    
+                    <!-- Rating representation -->
+                    <div class="flex items-center gap-2 mt-2">
+                        <span id="modalProductRating" class="bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1">4.2 <i class="fa-solid fa-star text-[10px]"></i></span>
+                        <span class="text-xs text-meesho-textGray font-semibold">(243 Ratings, 12 Reviews)</span>
+                    </div>
+
+                    <!-- Pricing configuration -->
+                    <div class="mt-4 flex items-baseline gap-3">
+                        <span id="modalProductPrice" class="text-3xl font-extrabold text-slate-900">₹349</span>
+                        <span id="modalProductMsp" class="text-sm line-through text-slate-400">₹599</span>
+                        <span id="modalProductDiscount" class="text-sm font-bold text-emerald-600">45% Off</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-1">Tax included. Lowest Price Guaranteed.</p>
+
+                    <!-- Sizes representation -->
+                    <div class="mt-6 space-y-2">
+                        <p class="text-xs font-bold text-slate-600">Select Sizes:</p>
+                        <div class="flex gap-2">
+                            <button class="size-btn border border-slate-300 hover:border-meesho-pink hover:text-meesho-pink py-1.5 px-4 rounded-lg text-sm font-bold transition-all-300">S</button>
+                            <button class="size-btn border-2 border-meesho-pink text-meesho-pink py-1.5 px-4 rounded-lg text-sm font-bold transition-all-300">M</button>
+                            <button class="size-btn border border-slate-300 hover:border-meesho-pink hover:text-meesho-pink py-1.5 px-4 rounded-lg text-sm font-bold transition-all-300">L</button>
+                            <button class="size-btn border border-slate-300 hover:border-meesho-pink hover:text-meesho-pink py-1.5 px-4 rounded-lg text-sm font-bold transition-all-300">XL</button>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mt-6 space-y-2 border-t border-slate-100 pt-4">
+                        <p class="text-xs font-bold text-slate-600">Product Specifications & Details:</p>
+                        <p id="modalProductDescription" class="text-xs text-slate-500 leading-relaxed">Fabric: Premium Soft Cotton. Fit: Regular fit with beautiful Indian traditional prints. Durable stitch and perfect standard wash patterns.</p>
+                    </div>
+                </div>
+
+                <!-- CTA buttons for Cart add and Quick buy -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                    <button id="modalAddToCartBtn" onclick="addToCartFromModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-xl transition-all-300 text-sm flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                    </button>
+                    <button id="modalBuyNowBtn" onclick="buyNowFromModal()" class="w-full bg-meesho-pink hover:bg-meesho-pinkDark text-white font-bold py-3 px-6 rounded-xl transition-all-300 text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md">
+                        <i class="fa-solid fa-bag-shopping"></i> Checkout Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDE DRAWER (Responsive Slide Out Panel) -->
+    <div id="cartDrawer" class="fixed inset-0 bg-black/60 z-50 hidden transition-opacity duration-300">
+        <div class="absolute right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl h-full flex flex-col justify-between transform translate-x-full transition-transform duration-300" id="cartDrawerContent">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-meesho-pink text-lg"></i>
+                    <h3 class="font-bold text-lg text-slate-800">Your Cart Bag (<span id="cartItemsCount">0</span>)</h3>
+                </div>
+                <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-slate-700 text-xl p-1 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Cart Body list (Scrollable) -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cartItemsList">
+                <!-- Cart items list dynamically rendered -->
+            </div>
+
+            <!-- Cart Summary & checkout trigger -->
+            <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs text-slate-500 font-medium">
+                        <span>Items Subtotal</span>
+                        <span id="cartSubtotal">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500 font-medium">
+                        <span>Discount Savings</span>
+                        <span class="text-emerald-600" id="cartSavings">-₹0</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500 font-medium">
+                        <span>Delivery Charges</span>
+                        <span class="text-emerald-600 font-semibold">FREE Delivery</span>
+                    </div>
+                    <hr class="border-slate-200">
+                    <div class="flex justify-between text-base font-extrabold text-slate-800">
+                        <span>Grand Total</span>
+                        <span id="cartGrandTotal">₹0</span>
+                    </div>
+                </div>
+
+                <!-- Call to action button -->
+                <button id="cartCheckoutBtn" onclick="openCheckoutModal()" class="w-full bg-meesho-pink hover:bg-meesho-pinkDark text-white font-bold py-3.5 rounded-xl transition-all-300 text-center text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                    Proceed to Delivery Address <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT ORDER FORM MODAL (Native Secure Form Validation) -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative p-6 border border-slate-200 shadow-2xl">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl cursor-pointer p-1"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="mb-6">
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-truck text-meesho-pink"></i> Shipping Address</h3>
+                <p class="text-xs text-slate-500">Provide accurate details for secure Cash on Delivery (COD) dispatch.</p>
+            </div>
+
+            <!-- Form Validation System -->
+            <form id="orderForm" onsubmit="submitCheckoutOrder(event)" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">Customer Name *</label>
+                    <input type="text" id="orderName" required placeholder="Ex: Senthilkumar S" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">Mobile Number *</label>
+                        <input type="tel" id="orderPhone" required pattern="[6-9][0-9]{9}" placeholder="10 Digit Mobile" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">Pin Code *</label>
+                        <input type="text" id="orderPin" required pattern="[1-9][0-9]{5}" placeholder="6 Digit Code" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">Flat / House / Street Address *</label>
+                    <textarea id="orderAddress" rows="3" required placeholder="Door number, Street name, Area" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">City *</label>
+                        <input type="text" id="orderCity" required placeholder="City/Town" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">State *</label>
+                        <input type="text" id="orderState" required placeholder="Tamil Nadu" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                </div>
+
+                <!-- Payment Methods Radio Buttons -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                    <label class="text-xs font-bold text-slate-600 uppercase block mb-1">Select Payment Method</label>
+                    <label class="flex items-center justify-between text-sm p-2 rounded bg-white border border-slate-200 cursor-pointer">
+                        <span class="flex items-center gap-2 font-semibold">
+                            <input type="radio" name="payment-method" value="cod" checked class="text-meesho-pink focus:ring-meesho-pink w-4 h-4">
+                            Cash on Delivery (COD)
+                        </span>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Recommended</span>
+                    </label>
+                    <label class="flex items-center justify-between text-sm p-2 rounded bg-white border border-slate-200 opacity-60 cursor-not-allowed">
+                        <span class="flex items-center gap-2 font-semibold">
+                            <input type="radio" name="payment-method" disabled class="text-meesho-pink focus:ring-meesho-pink w-4 h-4">
+                            UPI & Online Payments
+                        </span>
+                        <span class="text-xs text-slate-400 font-bold">Disabled (Soon)</span>
+                    </label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="w-full bg-meesho-pink hover:bg-meesho-pinkDark text-white font-extrabold py-3.5 rounded-xl transition-all-300 text-center text-sm shadow-md cursor-pointer">
+                    Confirm Cash on Delivery Order (₹<span id="checkoutGrandTotal">0</span>)
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- BECOME A SUPPLIER REGISTRATION MODAL -->
+    <div id="supplierModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[95vh] overflow-y-auto relative p-6 border border-slate-200 shadow-2xl">
+            <button onclick="closeSupplierModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl cursor-pointer p-1"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="mb-6">
+                <span class="text-xs bg-pink-50 text-meesho-pink px-3 py-1 rounded-md font-bold">SENTERNET RESELL PARTNER HUB</span>
+                <h3 class="text-2xl font-black text-slate-900 mt-2">Become a Meesho Supplier</h3>
+                <p class="text-xs text-slate-500 mt-1">Join 4 Lakh+ suppliers selling their products directly to 10 Crore+ customers across India at 0% Commission.</p>
+            </div>
+
+            <form id="supplierForm" onsubmit="submitSupplierRegistration(event)" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">GSTIN Identification Number *</label>
+                    <input type="text" id="supGst" required pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}" placeholder="Ex: 22AAAAA0000A1Z5" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">Company / Shop Trade Name *</label>
+                    <input type="text" id="supCompany" required placeholder="Ex: Senternet Apparels" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">Supplier Mobile *</label>
+                        <input type="tel" id="supPhone" required pattern="[6-9][0-9]{9}" placeholder="10 Digit Number" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-bold text-slate-600 uppercase">Active Email *</label>
+                        <input type="email" id="supEmail" required placeholder="name@domain.com" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">Product Category to Sell *</label>
+                    <select id="supCategory" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                        <option value="Saree & Ethnic Wear">Saree & Indian Ethnic Wear</option>
+                        <option value="Men's Garments">Men's Apparel & Garments</option>
+                        <option value="Home & Kitchen">Home Decor & Essentials</option>
+                        <option value="Cosmetics & Beauty">Cosmetics & Beauty Care</option>
+                        <option value="Electronics & Accessories">Electronics Accessories</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-slate-600 uppercase">Warehouse City Address *</label>
+                    <input type="text" id="supCity" required placeholder="Ex: Aranthangi, Pudukkottai" class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:border-meesho-pink focus:ring-1 focus:ring-meesho-pink outline-none">
+                </div>
+
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-all-300 text-sm shadow-md cursor-pointer">
+                    Register and Start Selling at 0% Commission
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ORDER CONFIRMATION / THANK YOU MODAL -->
+    <div id="thankYouModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center border border-slate-200 shadow-2xl space-y-6">
+            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 text-4xl mx-auto"><i class="fa-solid fa-circle-check"></i></div>
+            
+            <div class="space-y-2">
+                <h3 class="text-2xl font-black text-slate-900">Order Placed Successfully!</h3>
+                <p class="text-xs text-slate-500">Your order package is scheduled for secure dispatch. You will pay cash on hand upon delivery.</p>
+            </div>
+
+            <!-- Custom Order receipt structure -->
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-100 text-xs space-y-2">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Order Reference:</span>
+                    <span class="font-extrabold text-slate-800 uppercase" id="receiptOrderId">#M-948201</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Recipient Name:</span>
+                    <span class="font-bold text-slate-800" id="receiptName">Senthilkumar S</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Total COD Amount:</span>
+                    <span class="font-extrabold text-meesho-pink" id="receiptTotal">₹349</span>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <a id="receiptWhatsappLink" href="" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-3 rounded-xl transition-all-300 text-sm flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Track on Senternet WhatsApp
+                </a>
+                <button onclick="closeThankYouModal()" class="w-full border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold py-2.5 rounded-xl transition-all-300 text-xs">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER TRACKING SYSTEM MODAL -->
+    <div id="trackingModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative border border-slate-200 shadow-2xl space-y-4">
+            <button onclick="closeOrderTrackingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl cursor-pointer p-1"><i class="fa-solid fa-xmark"></i></button>
+            
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-receipt text-meesho-pink"></i> Track Orders</h3>
+            <p class="text-xs text-slate-400">Track and manage recent purchases registered to this session.</p>
+
+            <div class="space-y-3 max-h-[40vh] overflow-y-auto" id="trackingList">
+                <!-- User session tracking history cards -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ENTERPRISE CORPORATE FOOTER (Senternet Technologies Mandate) -->
+    <footer class="bg-white border-t border-meesho-border mt-16 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <!-- Company Intro & Footprint Info -->
+            <div class="space-y-4">
+                <span class="text-2xl font-black text-meesho-pink tracking-tight">meesho<span class="text-slate-400 text-xs font-normal">.clone</span></span>
+                <p class="text-xs text-meesho-textGray leading-relaxed">
+                    Designed and scaled in high fidelity as an enterprise-grade digital clone. Powered with real-time dynamic JavaScript logic, cart systems, secure lead-generation triggers, and premium mobile execution.
+                </p>
+                <div class="flex items-center gap-3 bg-pink-50 p-3 rounded-xl border border-pink-100">
+                    <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="w-12 h-12 rounded-full object-cover border-2 border-meesho-pink">
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Senthilkumar (MCA)</p>
+                        <p class="text-[10px] text-slate-400">CEO, SENTERNET TECHNOLOGIES</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Quick Navigation Links -->
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Explore Fashion</h4>
+                <ul class="space-y-2 text-xs text-meesho-textGray font-semibold">
+                    <li><a href="#productGrid" onclick="filterByCategory('women-ethnic')" class="hover:text-meesho-pink">Ethnic Sarees & Kurtis</a></li>
+                    <li><a href="#productGrid" onclick="filterByCategory('women-western')" class="hover:text-meesho-pink">Western Summer Wear</a></li>
+                    <li><a href="#productGrid" onclick="filterByCategory('men')" class="hover:text-meesho-pink">Men's Casual Shirts & Kurtas</a></li>
+                    <li><a href="#productGrid" onclick="filterByCategory('kids')" class="hover:text-meesho-pink">Cute Kid's Garments</a></li>
+                    <li><a href="#productGrid" onclick="filterByCategory('home-kitchen')" class="hover:text-meesho-pink">Modern Kitchen & Living</a></li>
+                </ul>
+            </div>
+
+            <!-- SENTERNET Official Footprint details -->
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Corporate Hub</h4>
+                <div class="text-xs text-meesho-textGray space-y-2 font-medium">
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-building text-meesho-pink"></i> <strong>Company Name:</strong> SENTERNET TECHNOLOGIES</p>
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-meesho-pink"></i> <strong>Location:</strong> Aranthangi, Pudukkottai, TN</p>
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-meesho-pink"></i> senternettechnologies@gmail.com</p>
+                    <p class="flex items-center gap-2"><i class="fab fa-whatsapp text-meesho-pink"></i> +91 81900 38085</p>
+                    <p class="flex items-center gap-2"><i class="fa-solid fa-globe text-meesho-pink"></i> <a href="https://senternet.page.gd" target="_blank" class="hover:underline text-meesho-pink">senternet.page.gd</a></p>
+                </div>
+            </div>
+
+            <!-- External Social Lead Channels -->
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Join Official Community</h4>
+                <p class="text-xs text-meesho-textGray leading-relaxed">Join SENTERNET communities instantly to unlock continuous daily earnings and resell updates.</p>
+                
+                <div class="grid grid-cols-2 gap-2">
+                    <a href="https://chat.whatsapp.com/E7qjZ5SAn8A7qPNEEEXiNn?s=cl&p=a&mlu=1" target="_blank" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all-300">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Group
+                    </a>
+                    <a href="https://t.me/senternet_technologies" target="_blank" class="bg-sky-50 hover:bg-sky-100 text-sky-600 py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all-300">
+                        <i class="fab fa-telegram-plane"></i> Telegram Channel
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://www.youtube.com/@senternet-technologies" target="_blank" class="text-slate-400 hover:text-red-500 text-lg transition-colors"><i class="fab fa-youtube"></i></a>
+                    <a href="https://senternet.blogspot.com" target="_blank" class="text-slate-400 hover:text-orange-500 text-lg transition-colors"><i class="fab fa-blogger"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-pink-500 text-lg transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-sky-500 text-lg transition-colors"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <p>&copy; 2026 SENTERNET TECHNOLOGIES. All rights reserved. Meesho UI Design Clone Platform.</p>
+            <div class="flex gap-4">
+                <a href="https://senternet.page.gd" target="_blank" class="hover:underline">Privacy Policy</a>
+                <span>&middot;</span>
+                <a href="https://senternet.page.gd" target="_blank" class="hover:underline">Terms of Service</a>
+                <span>&middot;</span>
+                <a href="https://senternet.page.gd" target="_blank" class="hover:underline">Reseller Guidelines</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DYNAMIC CORE LOGIC AND ENGINE -->
+    <script>
+        // High-Quality Indian Ethnic and Lifestyle Fashion Database (No Dark Themes, Pure Color Harmony)
+        const PRODUCT_DATABASE = [
+            {
+                id: 101,
+                title: "Traditional Kashmiri Zari Silk Saree",
+                category: "women-ethnic",
+                price: 349,
+                originalPrice: 899,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Luxurious silk saree decorated with golden zari thread work across the borders. Perfect for wedding and festive occasions.",
+                delivery: "Free Delivery",
+                discount: 61
+            },
+            {
+                id: 102,
+                title: "Chikankari Hand Embroidered Georgette Kurta Set",
+                category: "women-ethnic",
+                price: 499,
+                originalPrice: 1199,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Classic Lucknowi Chikankari embroidery handcrafted with supreme comfort fabric. Comes with matching comfortable pants.",
+                delivery: "Free Delivery",
+                discount: 58
+            },
+            {
+                id: 103,
+                title: "Elegant Floral Print Georgette Western Maxi Dress",
+                category: "women-western",
+                price: 299,
+                originalPrice: 699,
+                rating: 4.2,
+                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Vibrant floral prints design on breathable Georgette fabric. Highly recommended for family events, holidays, and regular outings.",
+                delivery: "Free Delivery",
+                discount: 57
+            },
+            {
+                id: 104,
+                title: "Premium Men's Khadi Cotton Slim Fit Shirt",
+                category: "men",
+                price: 249,
+                originalPrice: 499,
+                rating: 4.4,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Handloomed pure Khadi cotton shirt. Soft on skin and perfectly tailored for a confident workspace look.",
+                delivery: "Free Delivery",
+                discount: 50
+            },
+            {
+                id: 105,
+                title: "Embellished Wedding Sherwani Style Kurta Set",
+                category: "men",
+                price: 599,
+                originalPrice: 1499,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Luxurious designer ethnic wear with rich detailing on cuffs and collar. Perfect choice to steal the highlight in weddings.",
+                delivery: "Free Delivery",
+                discount: 60
+            },
+            {
+                id: 106,
+                title: "Kids Cotton Unisex Dungaree Set (0-5 Years)",
+                category: "kids",
+                price: 199,
+                originalPrice: 399,
+                rating: 4.1,
+                image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Super soft non-allergenic cotton dungaree paired with bright t-shirt. Ideal for active indoor and outdoor fun play.",
+                delivery: "Free Delivery",
+                discount: 50
+            },
+            {
+                id: 107,
+                title: "Pure Cotton Soft Bed Sheet with Pillow Covers",
+                category: "home-kitchen",
+                price: 349,
+                originalPrice: 799,
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Premium thread-count double bedsheet with elegant floral and ethnic block print styling. Elevates your room ambiance.",
+                delivery: "Free Delivery",
+                discount: 56
+            },
+            {
+                id: 108,
+                title: "Matte Finish Waterproof Velvet Lipstick Set",
+                category: "beauty-health",
+                price: 149,
+                originalPrice: 299,
+                rating: 4.3,
+                image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Long-lasting waterproof velvety smooth liquid lipsticks. Non-sticky and loaded with Vitamin E for organic lip nourishment.",
+                delivery: "Free Delivery",
+                discount: 50
+            },
+            {
+                id: 109,
+                title: "Fitness Monitoring Smartwatch with AMOLED Display",
+                category: "electronics",
+                price: 799,
+                originalPrice: 1999,
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1517502884422-41eaaced0168?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1517502884422-41eaaced0168?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1517502884422-41eaaced0168?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1517502884422-41eaaced0168?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1517502884422-41eaaced0168?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "HD Smartwatch packed with real-time heart-rate tracking, oxygen sensors, and seamless smartphone call and message notifications.",
+                delivery: "Free Delivery",
+                discount: 60
+            },
+            {
+                id: 110,
+                title: "Non-Stick 3-Piece Kitchen Cookware Cook Set",
+                category: "home-kitchen",
+                price: 499,
+                originalPrice: 999,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Highly durable non-stick frying pan, kadhai, and flat tawa set. Easy clean and compatible with induction stoves.",
+                delivery: "Free Delivery",
+                discount: 50
+            },
+            {
+                id: 111,
+                title: "Ultra-Light Premium Sports Running Shoes",
+                category: "men",
+                price: 399,
+                originalPrice: 899,
+                rating: 4.3,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Lightweight mesh shoes for running and training. Highly cushioning sole layer for great orthopedic support.",
+                delivery: "Free Delivery",
+                discount: 55
+            },
+            {
+                id: 112,
+                title: "Elegant Cotton Saree with Block Print Borders",
+                category: "women-ethnic",
+                price: 299,
+                originalPrice: 649,
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=500&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=500&q=80"
+                ],
+                description: "Premium soft block printed linen-cotton saree. Crafted with intricate handwork borders for daily comfortable office wear.",
+                delivery: "Free Delivery",
+                discount: 53
+            }
+        ];
+
+        // Global State variables
+        let cart = [];
+        let currentCategory = 'all';
+        let currentSearchQuery = '';
+        let currentMaxPrice = 1500;
+        let currentMinDiscount = 0;
+        let selectedProductForDetail = null;
+        let orderHistory = [];
+
+        // ON WINDOW LOAD SETUP
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartBadges();
+
+            // Setup Hamburger Mobile menus
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileSidebar.classList.remove('-translate-x-full');
+            });
+
+            closeMobileMenuBtn.addEventListener('click', () => {
+                mobileSidebar.classList.add('-translate-x-full');
+            });
+        });
+
+        // UPDATE PRICE RANGE SLIDER INDICATOR
+        function updatePriceSlider(val) {
+            document.getElementById('priceValue').innerText = `₹${val}`;
+            currentMaxPrice = parseInt(val);
+            renderProducts();
+        }
+
+        // RENDER PRODUCTS GRID WITH MULTI-TIER FILTERING
+        function renderProducts() {
+            const gridContainer = document.getElementById('productsGridContainer');
+            const emptyState = document.getElementById('emptyProductState');
+            
+            // Get checked discounts
+            const checkedDiscounts = Array.from(document.querySelectorAll('input[name="discount-checkbox"]:checked'))
+                                          .map(cb => parseInt(cb.value));
+            
+            currentMinDiscount = checkedDiscounts.length > 0 ? Math.min(...checkedDiscounts) : 0;
+            
+            // Get Sorter values
+            const sorterVal = document.getElementById('priceSorter').value;
+
+            // Apply Filters
+            let filtered = PRODUCT_DATABASE.filter(prod => {
+                const matchCategory = currentCategory === 'all' || prod.category === currentCategory;
+                const matchSearch = prod.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
+                                    prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                const matchPrice = prod.price <= currentMaxPrice;
+                const matchDiscount = prod.discount >= currentMinDiscount;
+
+                return matchCategory && matchSearch && matchPrice && matchDiscount;
+            });
+
+            // Apply Sorting
+            if (sorterVal === 'low-high') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sorterVal === 'high-low') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sorterVal === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            }
+
+            // Update displayed count
+            document.getElementById('displayedProductsCount').innerText = filtered.length;
+
+            // Clear Grid
+            gridContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            // Render Product Cards (Premium micro-interaction design elements)
+            filtered.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = "bg-white rounded-xl border border-meesho-border overflow-hidden transition-all-300 hover:shadow-lg hover:-translate-y-1.5 flex flex-col justify-between group relative";
+                
+                // Percent tag
+                productCard.innerHTML = `
+                    <div class="absolute top-2 left-2 bg-meesho-pink text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md z-10 shadow-sm">${product.discount}% OFF</div>
+                    
+                    <div class="relative overflow-hidden cursor-pointer" onclick="openProductDetail(${product.id})">
+                        <img src="${product.image}" alt="${product.title}" class="w-full h-44 sm:h-56 object-cover group-hover:scale-105 transition-all duration-500">
+                    </div>
+                    
+                    <div class="p-3 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">${product.category.replace('-', ' ')}</p>
+                            <h4 class="font-semibold text-slate-800 text-xs sm:text-sm line-clamp-2 mt-0.5 hover:text-meesho-pink cursor-pointer" onclick="openProductDetail(${product.id})">${product.title}</h4>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-base sm:text-lg font-black text-slate-900">₹${product.price}</span>
+                                <span class="text-xs line-through text-slate-400">₹${product.originalPrice}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="bg-emerald-50 text-emerald-700 text-[10px] font-extrabold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                                    ${product.rating} <i class="fa-solid fa-star text-[8px]"></i>
+                                </span>
+                                <span class="text-[10px] text-slate-400 font-medium">Free Delivery</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="directAddToCart(${product.id})" class="w-full bg-pink-50 hover:bg-meesho-pink text-meesho-pink hover:text-white font-extrabold text-xs py-2.5 rounded-lg transition-all-300 cursor-pointer flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-cart-plus"></i> Add Bag
+                            </button>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(productCard);
+            });
+        }
+
+        // CATEGORY SWITCHING ENGINES
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Adjust header visual tabs
+            const tabs = document.querySelectorAll('.category-tab');
+            tabs.forEach(tab => {
+                if (tab.getAttribute('onclick').includes(`'${category}'`)) {
+                    tab.classList.add('border-meesho-pink', 'text-meesho-pink');
+                } else {
+                    tab.classList.remove('border-meesho-pink', 'text-meesho-pink');
+                }
+            });
+
+            // Sync sidebar radio buttons
+            const radios = document.querySelectorAll('input[name="sidebar-category"]');
+            radios.forEach(radio => {
+                if (radio.value === category) radio.checked = true;
+            });
+
+            renderProducts();
+        }
+
+        function filterByCategoryMobile(category) {
+            filterByCategory(category);
+            document.getElementById('mobileSidebar').classList.add('-translate-x-full');
+        }
+
+        // LIVE HEADER SEARCH ACTION
+        function filterProducts() {
+            currentSearchQuery = document.getElementById('mainSearchInput').value;
+            renderProducts();
+        }
+
+        function filterMobileProducts() {
+            currentSearchQuery = document.getElementById('mobileSearchInput').value;
+            renderProducts();
+        }
+
+        // CLEAR FILTERS COMPLETE
+        function clearAllFilters() {
+            document.getElementById('mainSearchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            currentSearchQuery = '';
+            
+            document.getElementById('priceRange').value = 1500;
+            currentMaxPrice = 1500;
+            document.getElementById('priceValue').innerText = `₹1500`;
+
+            const checkboxes = document.querySelectorAll('input[name="discount-checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            currentMinDiscount = 0;
+
+            document.getElementById('priceSorter').value = 'relevance';
+
+            filterByCategory('all');
+        }
+
+        function resetCategory() {
+            clearAllFilters();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SORT MOBILE REDIRECTOR
+        function sortMobileProducts() {
+            const sorterVal = document.getElementById('mobilePriceSorter').value;
+            document.getElementById('priceSorter').value = sorterVal;
+            renderProducts();
+        }
+
+        function sortProducts() {
+            renderProducts();
+        }
+
+        // OPEN SINGLE PRODUCT SPECIFIC VIEW MODAL
+        function openProductDetail(productId) {
+            const product = PRODUCT_DATABASE.find(p => p.id === productId);
+            if (!product) return;
+
+            selectedProductForDetail = product;
+
+            // Update details
+            document.getElementById('modalProductImage').src = product.image;
+            document.getElementById('modalProductCategory').innerText = product.category.replace('-', ' ');
+            document.getElementById('modalProductTitle').innerText = product.title;
+            document.getElementById('modalProductPrice').innerText = `₹${product.price}`;
+            document.getElementById('modalProductMsp').innerText = `₹${product.originalPrice}`;
+            document.getElementById('modalProductDiscount').innerText = `${product.discount}% Off`;
+            document.getElementById('modalProductDescription').innerText = product.description;
+            document.getElementById('modalProductRating').innerHTML = `${product.rating} <i class="fa-solid fa-star text-[10px]"></i>`;
+
+            // Thumbnails mapping
+            for (let i = 1; i <= 4; i++) {
+                const thumb = document.getElementById(`thumb${i}`);
+                if (product.images && product.images[i - 1]) {
+                    thumb.src = product.images[i - 1];
+                    thumb.parentElement.classList.remove('hidden');
+                    // Add swap event
+                    thumb.parentElement.onclick = () => {
+                        document.getElementById('modalProductImage').src = product.images[i - 1];
+                        resetThumbBorder(i);
+                    };
+                } else {
+                    thumb.parentElement.classList.add('hidden');
+                }
+            }
+            resetThumbBorder(1);
+
+            // Display modal with layout triggers
+            document.getElementById('productDetailModal').classList.remove('hidden');
+            document.getElementById('productDetailModal').classList.add('flex');
+        }
+
+        function resetThumbBorder(activeIdx) {
+            for (let i = 1; i <= 4; i++) {
+                const thumb = document.getElementById(`thumb${i}`);
+                if (i === activeIdx) {
+                    thumb.parentElement.className = "border-2 border-meesho-pink rounded-lg overflow-hidden cursor-pointer";
+                } else {
+                    thumb.parentElement.className = "border border-slate-200 rounded-lg overflow-hidden cursor-pointer";
+                }
+            }
+        }
+
+        function closeProductDetailModal() {
+            document.getElementById('productDetailModal').classList.add('hidden');
+            document.getElementById('productDetailModal').classList.remove('flex');
+            selectedProductForDetail = null;
+        }
+
+        // INTERACTIVE SHOPPING CART MECHANICS
+        function updateCartBadges() {
+            const headerCount = document.getElementById('headerCartCount');
+            const mobileCount = document.getElementById('mobileCartCount');
+            const totalCount = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+
+            headerCount.innerText = totalCount;
+            mobileCount.innerText = totalCount;
+            document.getElementById('cartItemsCount').innerText = totalCount;
+        }
+
+        function directAddToCart(productId) {
+            const product = PRODUCT_DATABASE.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartBadges();
+            showCustomToast(`"${product.title.substring(0, 20)}..." added to bag!`);
+        }
+
+        function addToCartFromModal() {
+            if (selectedProductForDetail) {
+                directAddToCart(selectedProductForDetail.id);
+                closeProductDetailModal();
+                toggleCartDrawer();
+            }
+        }
+
+        function buyNowFromModal() {
+            if (selectedProductForDetail) {
+                directAddToCart(selectedProductForDetail.id);
+                closeProductDetailModal();
+                openCheckoutModal();
+            }
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const content = document.getElementById('cartDrawerContent');
+
+            if (drawer.classList.contains('hidden')) {
+                renderCartList();
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('translate-x-full');
+                }, 50);
+            } else {
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // RENDER CART LIST DATA IN DRAWERS
+        function renderCartList() {
+            const container = document.getElementById('cartItemsList');
+            container.innerHTML = '';
+
+            let subtotal = 0;
+            let mspTotal = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 flex flex-col items-center justify-center space-y-3">
+                        <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-xl"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <p class="font-bold text-slate-600">Your bag drawer is empty</p>
+                        <p class="text-xs text-slate-400">Add stylish clothing to begin checking out!</p>
+                        <button onclick="toggleCartDrawer()" class="bg-meesho-pink text-white font-bold py-2 px-6 rounded-lg text-xs hover:bg-meesho-pinkDark">Shop Fashion Now</button>
+                    </div>
+                `;
+                document.getElementById('cartSubtotal').innerText = "₹0";
+                document.getElementById('cartSavings').innerText = "-₹0";
+                document.getElementById('cartGrandTotal').innerText = "₹0";
+                document.getElementById('cartCheckoutBtn').disabled = true;
+                document.getElementById('cartCheckoutBtn').className = "w-full bg-slate-300 text-slate-500 py-3.5 rounded-xl text-center text-sm cursor-not-allowed font-bold";
+                return;
+            }
+
+            document.getElementById('cartCheckoutBtn').disabled = false;
+            document.getElementById('cartCheckoutBtn').className = "w-full bg-meesho-pink hover:bg-meesho-pinkDark text-white font-bold py-3.5 rounded-xl transition-all-300 text-center text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer";
+
+            cart.forEach((item, index) => {
+                subtotal += item.price * item.quantity;
+                mspTotal += item.originalPrice * item.quantity;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = "flex gap-4 bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm relative";
+                itemRow.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="w-20 h-24 object-cover rounded-lg border">
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-800 line-clamp-1">${item.title}</h5>
+                            <p class="text-[10px] text-slate-400 font-semibold uppercase mt-0.5">${item.category}</p>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <span class="text-sm font-extrabold text-slate-900">₹${item.price}</span>
+                                <span class="text-[10px] line-through text-slate-400">₹${item.originalPrice}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Qty controllers -->
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden">
+                                <button onclick="changeQty(${index}, -1)" class="px-2 py-1 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs cursor-pointer"><i class="fa-solid fa-minus"></i></button>
+                                <span class="px-3 py-1 text-xs font-extrabold text-slate-800">${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)" class="px-2 py-1 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs cursor-pointer"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <button onclick="removeFromCart(${index})" class="text-slate-400 hover:text-red-500 text-xs cursor-pointer"><i class="fa-solid fa-trash-can"></i> Remove</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(itemRow);
+            });
+
+            // Update prices
+            const savings = mspTotal - subtotal;
+            document.getElementById('cartSubtotal').innerText = `₹${mspTotal}`;
+            document.getElementById('cartSavings').innerText = `-₹${savings}`;
+            document.getElementById('cartGrandTotal').innerText = `₹${subtotal}`;
+        }
+
+        function changeQty(idx, offset) {
+            cart[idx].quantity += offset;
+            if (cart[idx].quantity <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCartBadges();
+            renderCartList();
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            updateCartBadges();
+            renderCartList();
+        }
+
+        // CHECKOUT ADDRESS FORM LOGIC
+        function openCheckoutModal() {
+            if (cart.length === 0) return;
+            toggleCartDrawer();
+
+            const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+            document.getElementById('checkoutGrandTotal').innerText = subtotal;
+
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        // SUBMIT SECURE ORDER VALIDATION
+        function submitCheckoutOrder(event) {
+            event.preventDefault();
+
+            // Secure user form entries
+            const name = document.getElementById('orderName').value;
+            const phone = document.getElementById('orderPhone').value;
+            const pincode = document.getElementById('orderPin').value;
+            const address = document.getElementById('orderAddress').value;
+            const city = document.getElementById('orderCity').value;
+            const state = document.getElementById('orderState').value;
+
+            const orderTotal = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+            const refId = `#M-${Math.floor(100000 + Math.random() * 900000)}`;
+
+            // Save order inside local session history array
+            const newOrder = {
+                orderId: refId,
+                name: name,
+                phone: phone,
+                address: `${address}, ${city}, ${state} - ${pincode}`,
+                amount: orderTotal,
+                items: [...cart],
+                date: new Date().toLocaleDateString()
+            };
+            orderHistory.unshift(newOrder);
+
+            // Setup custom display details
+            document.getElementById('receiptOrderId').innerText = refId;
+            document.getElementById('receiptName').innerText = name;
+            document.getElementById('receiptTotal').innerText = `₹${orderTotal}`;
+
+            // Create direct tracked WhatsApp URL for SENTERNET Resellers
+            const waMsg = `Hello SENTERNET Technologies, I have registered a new order clone confirmation:\nOrder Reference ID: ${refId}\nName: ${name}\nPhone: ${phone}\nTotal Amount: Rs.${orderTotal}\nAddress: ${address}, ${city} - ${pincode}`;
+            const encodedMsg = encodeURIComponent(waMsg);
+            document.getElementById('receiptWhatsappLink').href = `https://wa.me/918190038085?text=${encodedMsg}`;
+
+            // Reset checkout state
+            cart = [];
+            updateCartBadges();
+            document.getElementById('orderForm').reset();
+            closeCheckoutModal();
+
+            // Open confirmation thank you modal
+            document.getElementById('thankYouModal').classList.remove('hidden');
+
+            // Send payload to simulated webhook
+            sendToGoogleSheetsSimulated('Order', newOrder);
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').classList.add('hidden');
+        }
+
+        // SUPPLIER MANAGEMENT PORTAL
+        function openSupplierModal() {
+            document.getElementById('supplierModal').classList.remove('hidden');
+        }
+
+        function closeSupplierModal() {
+            document.getElementById('supplierModal').classList.add('hidden');
+        }
+
+        function submitSupplierRegistration(event) {
+            event.preventDefault();
+
+            const gst = document.getElementById('supGst').value;
+            const company = document.getElementById('supCompany').value;
+            const phone = document.getElementById('supPhone').value;
+            const email = document.getElementById('supEmail').value;
+            const category = document.getElementById('supCategory').value;
+            const city = document.getElementById('supCity').value;
+
+            const registrationData = {
+                gst, company, phone, email, category, city, date: new Date().toLocaleDateString()
+            };
+
+            closeSupplierModal();
+            document.getElementById('supplierForm').reset();
+
+            showCustomToast(`Supplier Profile for "${company}" registered successfully! Reviewing GST Details.`);
+
+            // Webhook registration simulation
+            sendToGoogleSheetsSimulated('SupplierRegistration', registrationData);
+        }
+
+        // RE-ENGAGE RECENT ORDERS VIEWING
+        function openOrderTrackingModal() {
+            const list = document.getElementById('trackingList');
+            list.innerHTML = '';
+
+            if (orderHistory.length === 0) {
+                list.innerHTML = `
+                    <p class="text-xs text-slate-400 text-center py-6">You have not registered any checkout orders in this session yet.</p>
+                `;
+            } else {
+                orderHistory.forEach(order => {
+                    const trackingCard = document.createElement('div');
+                    trackingCard.className = "bg-slate-50 p-4 rounded-xl border border-slate-100 text-xs space-y-2.5";
+                    trackingCard.innerHTML = `
+                        <div class="flex justify-between font-bold">
+                            <span class="text-meesho-pink">${order.orderId}</span>
+                            <span class="text-slate-400">${order.date}</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 font-medium"><strong>Ship To:</strong> ${order.address}</p>
+                        <div class="flex justify-between items-center pt-1.5 border-t border-slate-200">
+                            <span class="font-extrabold text-slate-800">COD Total: ₹${order.amount}</span>
+                            <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-extrabold text-[9px] uppercase tracking-wider">Processing Dispatch</span>
+                        </div>
+                    `;
+                    list.appendChild(trackingCard);
+                });
+            }
+
+            document.getElementById('trackingModal').classList.remove('hidden');
+        }
+
+        function closeOrderTrackingModal() {
+            document.getElementById('trackingModal').classList.add('hidden');
+        }
+
+        // NOTIFICATION POPUP ALERTS (No native block alert() as per instructions)
+        function showCustomToast(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 bg-slate-900 text-white text-xs font-bold px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-2 animate-bounce glass-card";
+            toast.style.background = "rgba(15, 23, 42, 0.95)";
+            toast.innerHTML = `<i class="fa-solid fa-circle-info text-meesho-pink"></i> ${message}`;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // GOOGLE SHEETS BACKEND PIPELINE (Simulated Apps Script webhook fetch structure)
+        function sendToGoogleSheetsSimulated(type, payload) {
+            console.log(`Sending secure SENTERNET webhook transaction for [${type}]:`, payload);
+            // Developer hook pipeline simulation. This integrates directly with an Apps Script sheet database.
+        }
+    </script>
+</body>
+</html>
