@@ -249,17 +249,8 @@
   </a>
 </p>
 
-🏢 Corporate Footprint
-Company Name: SENTERNET TECHNOLOGIES
-Location: Aranthangi, Pudukkottai, Tamil Nadu, India
-WhatsApp: +91 81900 38085
-Gmail: senternettechnologies@gmail.com
-Website: [https://senternet.page.gd](https://senternet.page.gd)
-Instagram: @senternet
-YouTube: [https://www.youtube.com/@senternet-technologies](https://www.youtube.com/@senternet-technologies)
-Twitter/X: @senternet-pdkt
-Telegram: t.me/senternet_technology
-Blogger: senternet.blogspot.com
+![Contribution Graph](https://github-readme-activity-graph.vercel.app/graph?username=senternettechnologies&theme=tokyo-night&area=true&hide_border=true&custom_title=GitHub%20Activity%20Graph)
+
 
 <p align="center">
   <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" width="75" style="border-radius: 50%; box-shadow: 0px 4px 10px rgba(0,112,243,0.3);" alt="Senthilkumar MCA - CEO Avatar" /><br/>
