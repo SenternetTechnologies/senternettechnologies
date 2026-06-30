@@ -251,7 +251,25 @@
 
 ![Contribution Graph](https://github-readme-activity-graph.vercel.app/graph?username=senternettechnologies&theme=tokyo-night&area=true&hide_border=true&custom_title=GitHub%20Activity%20Graph)
 
+<p align="center">
+  <img src="https://quickchart.io/chart?c={type:'radar',data:{labels:['Frontend','Backend','Design','DevOps','Mobile'],datasets:[{label:'Skills',data:[95,85,90,75,80],fill:true,backgroundColor:'rgba(8,145,178,0.2)',borderColor:'rgb(8,145,178)',pointBackgroundColor:'rgb(8,145,178)'}]},options:{legend:{display:false},scale:{ticks:{display:false}}}}" width="400" />
+</p>
 
+<div align="center">
+  <a href="https://senternet.page.gd">
+    <img src="https://img.shields.io/badge/🚀_Visit_My_Agency-0891b2?style=for-the-badge&logo=rocket&logoColor=white" />
+  </a>
+  <a href="mailto:senternettechnologies@gmail.com">
+    <img src="https://img.shields.io/badge/📩_Collaborate_With_Me-1c1917?style=for-the-badge&logo=gmail&logoColor=0891b2" />
+  </a>
+</div>
+
+
+<details>
+  <summary><b>Hover to see my Frontend Strategy</b></summary>
+  <br>
+  <p>I focus on <b>Performance-First Architecture</b> using Tailwind v4+ and clean semantic HTML5 to ensure 100/100 Lighthouse scores.</p>
+</details>
 <p align="center">
   <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" width="75" style="border-radius: 50%; box-shadow: 0px 4px 10px rgba(0,112,243,0.3);" alt="Senthilkumar MCA - CEO Avatar" /><br/>
   <i>"Architecting the future, one elite deploy at a time."</i><br/><br/>
